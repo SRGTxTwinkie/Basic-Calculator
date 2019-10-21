@@ -21,7 +21,8 @@ def Display(userNumber)
   puts "1:) Add: "
   puts "2:) Subtract: "
   puts "3:) Multiply: "
-  puts "4:) Exit: "
+  puts "4:) Divide: "
+  puts "5:) Exit"
   puts
 
   userOperation = ""
@@ -42,6 +43,10 @@ def Display(userNumber)
   elsif userOperation == "3"
     multiply = Multiply(userNumber)
     userNumber = multiply
+
+  elsif userOperation == "4"
+    divide = Divide(userNumber)
+    userNumber = divide
   else
     puts "Your final number is #{userNumber}"
     puts
@@ -109,6 +114,25 @@ def Multiply(number)
     puts "Please put a number"
   end
 
+
+end
+
+def Divide(number)
+
+  print "What number do you want Divide by #{number}: "
+  divide = gets.chomp()
+  begin
+    if divide.to_i.to_s == divide
+      returnDivide = number / divide.to_i
+      return returnDivide
+    else
+      puts
+      puts "Please put a number"
+    end
+  rescue
+    print "Error: Divide by zero \n"
+    Divide(number)
+  end
 
 end
 
