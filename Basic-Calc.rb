@@ -16,7 +16,7 @@ end
 
 def Display(userNumber)
 
-  choices = ["1","2","3","4"]
+  choices = ["1","2","3","4","5"]
   puts
   puts "1:) Add: "
   puts "2:) Subtract: "
