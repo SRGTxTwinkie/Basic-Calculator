@@ -1,10 +1,14 @@
 def Init
 
+    secondNumber = 0
+    firstNumber = 0
+    operator = ""
+
     puts
     print "Please enter your number: "
     numb = gets.chomp
     if numb.to_i.to_s == numb
-      Display(numb.to_i)
+      Display(numb.to_f,firstNumber, operator,secondNumber)
     else
       puts
       puts "Please put a number"
@@ -14,64 +18,72 @@ def Init
 end
 
 
-def Display(userNumber)
-
-  choices = ["1","2","3","4","5"]
+def Display(userNumber,firstNumber, operator,secondNumber)
+  manual_catch = 0
   puts
   puts "1:) Add: "
   puts "2:) Subtract: "
   puts "3:) Multiply: "
   puts "4:) Divide: "
   puts "5:) Exit"
+  puts "Current number #{userNumber}"
   puts
 
-  userOperation = ""
-
-  until choices.include?(userOperation)
-  print "What will you do to #{userNumber}: "
+  print "Use manually, or use the commands, your choice: "
   userOperation = gets.chomp
+
+  command = userOperation.split(" ")
+  firstNumber = command[0].to_i
+  operator = command[1]
+  secondNumber = command[2].to_i
+
+  puts command.count
+
+  if command.count == 3
+    if operator.to_s == "+"
+      userNumber = firstNumber.to_i + secondNumber.to_i
+      manual_catch = 1
+    elsif operator.to_s == "-"
+      userNumber = firstNumber.to_i - secondNumber.to_i
+      manual_catch = 1
+    elsif operator.to_s == "/"
+      userNumber = firstNumber.to_i / secondNumber.to_i
+      manual_catch = 1
+    elsif operator.to_s == "*"
+      userNumber = firstNumber.to_i * secondNumber.to_i
+      manual_catch = 1
+    end
   end
 
-  if userOperation == "1"
-    addition = Add(userNumber)
-    userNumber = addition
+if manual_catch == 0
+    if userOperation == "1"
+      userNumber = Add(userNumber)
 
-  elsif userOperation == "2"
-    subtraction = Subtract(userNumber)
-    userNumber = subtraction
+    elsif userOperation == "2"
+      subtraction = Subtract(userNumber)
+      userNumber = subtraction
 
-  elsif userOperation == "3"
-    multiply = Multiply(userNumber)
-    userNumber = multiply
+    elsif userOperation == "3"
+      multiply = Multiply(userNumber)
+      userNumber = multiply
 
-  elsif userOperation == "4"
-    divide = Divide(userNumber)
-    userNumber = divide
-  else
-    puts "Your final number is #{userNumber}"
-    puts
-    puts "The program will now end"
-    abort("Thanks for using!")
-  end
+    elsif userOperation == "4"
+      divide = Divide(userNumber)
+      userNumber = divide
+    elsif userOperation == "5"
+      puts "Your final number is #{userNumber}"
+      puts
+      puts "The program will now end"
+      abort("Thanks for using!")
+    else
+      userNumber = userOperation.to_i
+    end
+end
 
   puts
   puts "Your number is #{userNumber}"
   puts
-
-  repeat = ""
-
-  until repeat.upcase == "Y" || repeat.upcase == "N"
-    print "Do you want to enter a new number? \n"
-    print "[Y/N]: "
-    repeat = gets.chomp()
-  end
-
-  if repeat.upcase == "Y"
-    Init()
-  else
-    Display(userNumber)
-  end
-
+  Display(userNumber,firstNumber, operator,secondNumber)
 end
 
 def Add(number)
