@@ -3,22 +3,13 @@ def Init
     secondNumber = 0
     firstNumber = 0
     operator = ""
-
-    puts
-    print "Please enter your number: "
-    numb = gets.chomp
-    if numb.to_i.to_s == numb
-      Display(numb.to_f,firstNumber, operator,secondNumber)
-    else
-      puts
-      puts "Please put a number"
-      Init()
-    end
-
+    userNumber = ""
+    Display(userNumber,firstNumber, operator,secondNumber)
 end
 
 
 def Display(userNumber,firstNumber, operator,secondNumber)
+
   manual_catch = 0
   puts
   puts "1:) Add: "
@@ -37,9 +28,7 @@ def Display(userNumber,firstNumber, operator,secondNumber)
   operator = command[1]
   secondNumber = command[2].to_i
 
-  puts command.count
-
-  if command.count == 3
+  if command.count == 3 and manual_catch == 0
     if operator.to_s == "+"
       userNumber = firstNumber.to_i + secondNumber.to_i
       manual_catch = 1
@@ -47,7 +36,7 @@ def Display(userNumber,firstNumber, operator,secondNumber)
       userNumber = firstNumber.to_i - secondNumber.to_i
       manual_catch = 1
     elsif operator.to_s == "/"
-      userNumber = firstNumber.to_i / secondNumber.to_i
+      userNumber = firstNumber.to_f / secondNumber.to_f
       manual_catch = 1
     elsif operator.to_s == "*"
       userNumber = firstNumber.to_i * secondNumber.to_i
@@ -57,8 +46,7 @@ def Display(userNumber,firstNumber, operator,secondNumber)
 
 if manual_catch == 0
     if userOperation == "1"
-      userNumber = Add(userNumber)
-
+      userNumber = Add(userOperation)
     elsif userOperation == "2"
       subtraction = Subtract(userNumber)
       userNumber = subtraction
@@ -91,11 +79,12 @@ def Add(number)
   print "What number do you want to Add to #{number}: "
   addto = gets.chomp()
   if addto.to_i.to_s == addto
-    returnAdd = number + addto.to_i
+    returnAdd = number.to_i + addto.to_i
     return returnAdd
   else
     puts
     puts "Please put a number"
+    Add(number)
   end
 
 end
@@ -105,11 +94,12 @@ def Subtract(number)
   print "What number do you want to Subtract from #{number}: "
   subtract = gets.chomp()
   if subtract.to_i.to_s == subtract
-    returnSubtraction = number - subtract.to_i
+    returnSubtraction = number.to_i - subtract.to_i
     return returnSubtraction
   else
     puts
     puts "Please put a number"
+    Subtract(number)
   end
 
 end
@@ -119,11 +109,12 @@ def Multiply(number)
   print "What number do you want Mulitiply to #{number}: "
   multiply = gets.chomp()
   if multiply.to_i.to_s == multiply
-    returnMultiply = number * multiply.to_i
+    returnMultiply = number.to_i * multiply.to_i
     return returnMultiply
   else
     puts
     puts "Please put a number"
+    Multiply(number)
   end
 
 
@@ -135,11 +126,12 @@ def Divide(number)
   divide = gets.chomp()
   begin
     if divide.to_i.to_s == divide
-      returnDivide = number / divide.to_i
+      returnDivide = number.to_f  / divide.to_f
       return returnDivide
     else
       puts
       puts "Please put a number"
+      Divide(number)
     end
   rescue
     print "Error: Divide by zero \n"
