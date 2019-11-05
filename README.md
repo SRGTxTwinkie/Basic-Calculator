@@ -1,7 +1,7 @@
 # Basic-Calculator
 I wonder how many lines real calculators are. They must be crazy, or I must be stupid.
 
-#Calculator Rebuild
+# Calculator Rebuild
 
 That is now the working version, embedded command are gone, manual input only.
 The plus is that it works now.
