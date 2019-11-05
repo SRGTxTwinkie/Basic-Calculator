@@ -53,7 +53,7 @@ def Display(userNumber,firstNumber, operator,secondNumber)
       AddingMachine()
     elsif userOperation == "6"###Sets the current number used, mostly for debug
       puts "Press enter when finished: "
-      userOperation = gets().to_i
+      userOperation = gets().chomp
       userNumber = userOperation
     elsif userOperation == "7"
       Instructions()
@@ -72,21 +72,18 @@ def Display(userNumber,firstNumber, operator,secondNumber)
 end
 
 def ManualCheck(manual_catch, userNumber, userOperation)
-  command = userOperation.strip.split()
+  command = userOperation.split("")
   x = 0
   for i in command
     if i.to_i.to_s == i
       x += 1
       next
     else
-      operator = command[x]
+      puts command[x - 1]
       break
     end
   end
-  hold = userOperation.split(command[x])
-
-  command = hold
-
+  operator = "+"
   puts command.count
 
   if command.count == 1
