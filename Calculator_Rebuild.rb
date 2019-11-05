@@ -41,7 +41,6 @@ def Operator(find)
       next
     end
   end
-
 end
 
 def FirstNumber(find)
@@ -83,7 +82,6 @@ def SecondNumber(find)
       next
     end
   end
-
 end
 
 def Operation(first, operator, last)
@@ -99,7 +97,6 @@ def Operation(first, operator, last)
   else
     puts "Command not recognized"
   end
-
 end
 
 Init()
